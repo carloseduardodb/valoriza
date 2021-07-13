@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from "express";
+import { UserIsAdminService } from "../services/UserIsAdminService";
 
-export function ensureAdmin(
+export async function ensureAdmin(
   request: Request,
   response: Response,
   next: NextFunction
 ) {
-  const admin = true;
+  const { user_id } = request;
 
-  if (admin) {
+  const isAdmin = await new UserIsAdminService().execute(user_id);
+
+  if (isAdmin) {
     return next();
   }
 
