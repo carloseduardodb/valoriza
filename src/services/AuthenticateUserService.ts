@@ -29,7 +29,7 @@ class AuthenticateUserService {
       {
         email: user.email,
       },
-      process.env.TOKEN_KEY,
+      process.env.PRIVATE_KEY,
       {
         subject: user.id,
         expiresIn: "1d",
